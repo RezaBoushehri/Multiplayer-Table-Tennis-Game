@@ -20,7 +20,7 @@ let playerNo = 0;
 let roomID;
 
 // const SOCKET_URL = "https://multiplayer-table-tennis-game.onrender.com";
-const SOCKET_URL = "https://multiplayer-table-tennis-game.onrender.com";
+const SOCKET_URL = "https://mc.farahoosh.ir:8080/";
 
 const socket = io(SOCKET_URL || "https://94.74.128.194:8080", {
   transports: ["websocket"],
@@ -119,7 +119,7 @@ function draw() {
   ball.draw(ctx);
 
   // center line
-  ctx.strokeStyle = "black";
+  ctx.strokeStyle = "white";
   ctx.beginPath();
   ctx.setLineDash([10, 10]);
   ctx.moveTo(400, 5);
