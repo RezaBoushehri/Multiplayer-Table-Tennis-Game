@@ -1,21 +1,32 @@
 require('dotenv').config();
 const express = require("express");
-const app = express();
-const http = require("http");
-const server = http.createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
+const https = require('https');
 const cors = require("cors");
+const fs = require('fs');
+const { Server } = require("socket.io");
 const path = require('path');
 
 // Use the PORT environment variable or default to 3000
 const PORT = process.env.PORT || 8080;
 
-app.use(
-  cors({
-    origin: "mc.farahoosh.ir",
-  })
-);
+const app = express();
+
+// Load SSL certificates
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/mc.farahoosh.ir/privkey.pem', 'utf8'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/mc.farahoosh.ir/fullchain.pem', 'utf8'),
+};
+
+// Create HTTPS server with SSL
+const server = https.createServer(options, app);
+
+// Initialize Socket.io
+const io = new Server(server, {
+  cors: {
+    origin: "https://mc.farahoosh.ir", // Ensure this matches your frontend
+    methods: ["GET", "POST"]
+  }
+});
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, '../public')));

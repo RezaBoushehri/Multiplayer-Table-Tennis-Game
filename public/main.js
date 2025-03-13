@@ -22,7 +22,7 @@ let roomID;
 // const SOCKET_URL = "https://multiplayer-table-tennis-game.onrender.com";
 const SOCKET_URL = "https://multiplayer-table-tennis-game.onrender.com";
 
-const socket = io(SOCKET_URL || "http://94.74.128.194:8080", {
+const socket = io(SOCKET_URL || "https://94.74.128.194:8080", {
   transports: ["websocket"],
 });
 
@@ -53,13 +53,13 @@ socket.on("startedGame", (room) => {
   roomID = room.id;
   message.innerText = "";
 
-  player1 = new Player(room.players[0].x, room.players[0].y, 20, 60, "#c6e8e1");
-  player2 = new Player(room.players[1].x, room.players[1].y, 20, 60, "#fdc3bf");
+  player1 = new Player(room.players[0].x, room.players[0].y, 20, 60, "#0082ff");//blue
+  player2 = new Player(room.players[1].x, room.players[1].y, 20, 60, "#ff7d00");
 
   player1.score = room.players[0].score;
   player2.score = room.players[1].score;
 
-  ball = new Ball(room.ball.x, room.ball.y, 10, "black");
+  ball = new Ball(room.ball.x, room.ball.y, 10, "#00ff7d");
 
   window.addEventListener("keydown", (e) => {
     if (isGameStarted) {
