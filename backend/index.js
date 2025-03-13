@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 
 app.use(
   cors({
-    origin: "*",
+    origin: "mc.farahoosh.ir",
   })
 );
 
@@ -206,5 +206,5 @@ function startGame(room) {
 }
 
 server.listen(PORT, () => {
-  console.log(`listening on *:${PORT}`);
+  console.log(`listening on mc.farahoosh.ir:${PORT}`);
 });

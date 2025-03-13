@@ -19,9 +19,10 @@ let isGameStarted = false;
 let playerNo = 0;
 let roomID;
 
+// const SOCKET_URL = "https://multiplayer-table-tennis-game.onrender.com";
 const SOCKET_URL = "https://multiplayer-table-tennis-game.onrender.com";
 
-const socket = io(SOCKET_URL || "http://localhost:3000", {
+const socket = io(SOCKET_URL || "http://94.74.128.194:8080", {
   transports: ["websocket"],
 });
 
